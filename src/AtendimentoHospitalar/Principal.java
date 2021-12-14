@@ -1,6 +1,8 @@
 package AtendimentoHospitalar;
 
 import Repositorio.*;
+
+import java.sql.ResultSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JOptionPane;
@@ -19,7 +21,7 @@ public class Principal {
 		ProfissionalRepositorio prorepos = new ProfissionalRepositorio();
 
 		
-		if(prepos.List("Select * from Paciente where CPF = '"+CPF+"'") != null) {
+		if(!prepos.List("Select * from Paciente where CPF = '"+CPF+"'").isEmpty()){
 			
 			CartaoSUSRepositorio cartaorepos = new CartaoSUSRepositorio();
 			AcompanhanteRepositorio acompanharepos = new AcompanhanteRepositorio();
@@ -32,7 +34,7 @@ public class Principal {
 		}
 		
 		
-		if(prorepos.List("Select * from Profissional where CPF = '"+CPF+"'") != null) {
+		if(!prorepos.List("Select * from Profissional where CPF = '"+CPF+"'").isEmpty()) {
 		
 			do {
 			
@@ -86,7 +88,7 @@ public class Principal {
 		ProfissionalRepositorio prorepos = new ProfissionalRepositorio();
 
 		
-		if(prepos.List("Select * from Paciente where CPF = '"+CPF+"'") != null) {
+		if(!prepos.List("Select * from Paciente where CPF = '"+CPF+"'").isEmpty()) {
 			
 			
 			
@@ -121,7 +123,7 @@ public class Principal {
 		
 		}
 		
-		if(prorepos.List("Select * from Profissional where CPF = '"+CPF+"'") != null) {
+		if(!prorepos.List("Select * from Profissional where CPF = '"+CPF+"'").isEmpty()) {
 			
 			do {
 				JOptionPane.showInputDialog("O que deseja alterar?"
@@ -237,7 +239,7 @@ public class Principal {
 				user_repos = new UsuarioRepositorio();
 
 				check = (user_repos
-						.List("Select * from Usuario where login_user = " + user + " and senha = " + password) == null);
+						.List("Select * from Usuario where login_user = " + user + " and senha = " + password)).isEmpty();
 
 			} while (check == false);
 
@@ -322,7 +324,7 @@ public class Principal {
 				user_repos = new UsuarioRepositorio();
 
 				check = (user_repos
-						.List("Select * from Usuario where login_user = '"+ user+"' and senha ='"+password+"'") == null);
+						.List("Select * from Usuario where login_user = '"+ user+"' and senha ='"+password+"'").isEmpty());
 
 			} while (check == true);
 
@@ -358,8 +360,8 @@ public class Principal {
 
 					UsuarioRepositorio user_repos = new UsuarioRepositorio();
 
-					check = (user_repos.List(
-							"Select * from Usuario where login_user ='"+user+"'and senha ='"+password+"'") == null);
+					check = user_repos.List(
+							"Select * from Usuario where login_user ='"+user+"'and senha ='"+password+"'").isEmpty();
 
 					System.out.println(check);
 				} while (user.equals(null) || user.equals("") || password.equals(null) || password.equals("")
