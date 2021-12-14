@@ -447,7 +447,7 @@ public class Principal {
 
 			}
 
-		} while (opcao != 1 && opcao != 2);
+		} while (opcao != 1 && opcao != 2 && opcao!=3 && opcao!=4);
 
 	}
 }
